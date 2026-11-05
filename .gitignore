@@ -1,0 +1,13 @@
+
+## Step 7F: Create `.gitignore`
+
+Create a file named `.gitignore`:
+
+```text
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.streamlit/secrets.toml
+.DS_Store
