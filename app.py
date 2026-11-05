@@ -787,14 +787,31 @@ if uploaded_file is not None:
                     # Future forecasting
                     st.subheader("Future Sales Forecast")
 
+# Prepare training data using all historical months
+                    forecast_X = np.arange(
+                        len(monthly_df)
+                        ).reshape(-1, 1)
+
+                    forecast_y = monthly_df[sales_col].values
+
+# Train final model using all historical data
+                    forecast_model = LinearRegression()
+
+                    forecast_model.fit(
+                    forecast_X,
+                    forecast_y
+                    )
+
+# Generate future time periods
                     future_X = np.arange(
-                        len(monthly_df),
-                        len(monthly_df) + forecast_months
+                    len(monthly_df),
+                    len(monthly_df) + forecast_months
                     ).reshape(-1, 1)
 
-                    forecast_model = LinearRegression()
-                    forecast_model.fit(X, y)
-                    future_predictions = forecast_model.predict(future_X)
+# Predict future sales
+                    future_predictions = forecast_model.predict(
+                    future_X
+                    )
 
                     future_dates = pd.date_range(
                         start=monthly_df["Month"].iloc[-1]
